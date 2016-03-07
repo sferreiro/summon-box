@@ -6,12 +6,9 @@ Vagrant.configure('2') do |config|
 
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   
-  config.vm.synced_folder "summon/", "/home/summon", create: true, type: smb    
+  config.vm.synced_folder "summon/", "/home/summon", type: "smb"
   
-  $u = ENV['github_user']
-  $p = ENV['github_pass']
-  $e = ENV['github_mail']
-  config.vm.provision :shell, args:[$u, $p, $e], path: 'bootstrap.sh', keep_color: true
+  config.vm.provision :shell, path: 'bootstrap.sh', keep_color: true
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048

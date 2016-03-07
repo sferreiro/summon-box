@@ -19,13 +19,6 @@ apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
 
-#install Ruby ruby2.3 ruby2.3-dev
-#update-alternatives --set ruby /usr/bin/ruby2.3 >/dev/null 2>&1
-#update-alternatives --set gem /usr/bin/gem2.3 >/dev/null 2>&1
-
-#echo installing Bundler
-#gem install bundler -N >/dev/null 2>&1
-
 install Git git
 install curl curl
 
@@ -64,27 +57,17 @@ SQL
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
-install xclip xclip
+install solr-tomcat solr-tomcat
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-echo Installing SUMMON 
-echo User: $1
-
-mkdir /home/summon
-cd /home/summon
-
-git clone https://$1:$2@github.com/summon/CustomizeR.git
-git clone https://$1:$2@github.com/summon/maverick.git
-git clone https://$1:$2@github.com/summon/summon-api.git
-
 echo Next steps: 
-echo '1. type "vagrant ssh" to access the VM, all summon dirs should be there.'
+echo '1. type "vagrant ssh" '
 echo '2. You need to create a public ssh and associate it to your github account.'
 echo '   Instructions:   https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/'
 echo '   To copy the key just run: cat ~/.ssh/id_rsa.pub    And copy the pass from your cmd console.'
-echo '3. cd maveric  ->  bundle install'
+echo '3. Go to /home/summon and execute install.sh.'
 
 echo 
 echo 'all set, rock on!'
