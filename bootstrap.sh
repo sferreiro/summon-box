@@ -13,16 +13,16 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 
-echo updating package information
-apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
-apt-get -y update >/dev/null 2>&1
+#echo updating package information
+#apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
+#apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
 
-install Git git
+#install Git git
 install curl curl
 
-echo Installing RVM
+#echo Installing RVM
 
 #git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 #echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -31,7 +31,13 @@ echo Installing RVM
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
-\curl -sSL https://get.rvm.io | bash -s stable --ruby=1.9.3-p448
+\curl -sSL https://get.rvm.io | sudo bash -s stable --ruby=1.9.3-p448
+
+adduser vagrant rvm
+
+gem install bundler
+
+
 
 #install SQLite sqlite3 libsqlite3-dev
 #install memcached memcached
@@ -55,9 +61,10 @@ GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'rails'@'localhost';
 GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost';
 SQL
 
-install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
+install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev 
+install 'Ruby File Magic Dependencies' libmagic-dev libmagic-dev
 install 'ExecJS runtime' nodejs
-install solr-tomcat solr-tomcat
+#install solr-tomcat solr-tomcat
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8

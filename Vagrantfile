@@ -6,7 +6,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   
-  config.vm.synced_folder "summon/", "/home/summon", type: "smb"
+  config.vm.synced_folder "summon/", "/home/summon", create: true, type: "smb"
   
   config.vm.provision :shell, path: 'bootstrap.sh', keep_color: true
 
